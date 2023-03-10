@@ -5,6 +5,7 @@
     "build": "NITRO_PRESET=deno nuxi build",
     "preview": "cd .output/ && deno run -A server/index.ts",
     "deploy": "cd .output/ && deployctl deploy --project='clau-platform' --prod server/index.ts && cd ..",
+    "build:preview": "npm run build && npm run preview",
     "build:deploy": "npm run build && npm run deploy"
   },
   "devDependencies": {

@@ -31,7 +31,9 @@
               <pre>
                 {{
                   {
-                    MagicLink,
+                    isLoggedIn,
+                    user,
+                    useSMS,
                   }
                 }}
               </pre>
@@ -89,7 +91,6 @@
 
           <div class="mt-6 grid grid-cols-1 gap-3">
             <div>
-              {{ useSMS }}
               <a
                 v-if="!useSMS"
                 @click="toggleSMS()"
@@ -132,11 +133,18 @@ const login = async () => {
 const {
   emailInput: email,
   phoneInput: phone,
-  error,
-  user,
-  isLoading,
   isLoggedIn,
+  user,
 } = storeToRefs(MagicLink);
 
-MagicLink.setup();
+onMounted(() => {
+  console.log("on-mounted");
+  MagicLink.setup();
+});
+
+watch(user, () => {
+  if (user.value?.phoneNumber) {
+    useSMS.value = true;
+  }
+});
 </script>

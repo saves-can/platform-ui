@@ -19,7 +19,9 @@ export const useStoreMagicLink = defineStore("MagicLink", () => {
 
     try {
       isLoggedIn.value = await m.user.isLoggedIn();
+      console.log("isLoggedIn");
       user.value = await m.user.getMetadata();
+      console.log("user.value");
     } catch (e) {
       console.log(e);
     }
@@ -60,7 +62,6 @@ export const useStoreMagicLink = defineStore("MagicLink", () => {
     isLoading.value = false;
   }
 
-
   async function loginSMS() {
     isLoading.value = true;
 
@@ -83,6 +84,16 @@ export const useStoreMagicLink = defineStore("MagicLink", () => {
     m.preload().then(() => console.log("Magic <iframe> loaded."));
     await refreshUser();
   }
+
+  watch(user, () => {
+    if (user.value?.phoneNumber) {
+      phoneInput.value = user.value.phoneNumber;
+    }
+
+    if (user.value?.email) {
+      emailInput.value = user.value.email;
+    }
+  });
 
   return {
     setup,
