@@ -1,17 +1,5 @@
 <template>
   <div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
-    <div class="mx-auto">
-      <pre>
-        {{
-          {
-            isLoggedIn,
-            user,
-            useSMS,
-          }
-        }}
-      </pre>
-    </div>
-
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
       <img
         class="mx-auto h-12 w-auto"
@@ -35,7 +23,16 @@
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
       <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
         <form class="space-y-6" @submit.prevent="login">
-          <div>
+
+          <!-- <div v-if="isLoggedIn" class="mx-auto text-xs text-white bg-black rounded-lg p-3">
+            <pre>{{ { isLoggedIn, user, useSMS, oAuthResult } }}</pre>
+          </div> -->
+
+          <div v-if="isLoggedIn">
+            <UiJSON class="mx-auto  text-white bg-black rounded-lg p-1 overflow-auto" :json="{ isLoggedIn, user, useSMS, oAuthResult }"/>
+          </div>
+
+          <div v-if="!isLoggedIn">
             <label for="email" class="block text-sm font-medium text-gray-700">
               Continue with {{ useSMS ? "Phone" : "Email" }}
             </label>
@@ -68,7 +65,7 @@
               type="submit"
               class="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
-              With
+              Get a Code by
               {{ useSMS ? "Phone" : "Email" }}
             </button>
           </div>
@@ -153,6 +150,7 @@ const {
   phoneInput: phone,
   isLoggedIn,
   user,
+  oAuthResult,
 } = storeToRefs(MagicLink);
 
 onMounted(() => {
@@ -166,3 +164,13 @@ watch(user, () => {
   }
 });
 </script>
+
+<style scoped>
+pre {
+  white-space: pre-wrap; /* css-3 */
+  white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+  white-space: -pre-wrap; /* Opera 4-6 */
+  white-space: -o-pre-wrap; /* Opera 7 */
+  word-wrap: break-word; /* Internet Explorer 5.5+ */
+}
+</style>

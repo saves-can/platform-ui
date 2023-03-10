@@ -27,6 +27,7 @@
     "@vue-hero-icons/outline": "^1.7.2",
     "@vue-hero-icons/solid": "^1.7.2",
     "magic-sdk": "^13.6.0",
-    "pinia": "^2.0.32"
+    "pinia": "^2.0.32",
+    "vue3-json-source-viewer": "^2.4.2"
   }
 }

@@ -18,6 +18,7 @@ export const useStoreMagicLink = defineStore("MagicLink", () => {
   const oAutInput = ref("github");
   const isLoggedIn: any = ref(null);
   const isLoading = ref(false);
+  const oAuthResult: any = ref(null);
 
   async function refreshUser() {
     console.log("refreshUser");
@@ -95,10 +96,19 @@ export const useStoreMagicLink = defineStore("MagicLink", () => {
     isLoading.value = false;
   }
 
+  async function getOAuthResult() {
+    try {
+      oAuthResult.value = await m.oauth.getRedirectResult();
+    } catch (e) {
+      console.log({ e });
+    }
+  }
+
   async function setup() {
     console.log("preload");
     m.preload().then(() => console.log("Magic <iframe> loaded."));
-    await refreshUser();
+
+    await Promise.all([refreshUser(), getOAuthResult()]);
   }
 
   watch(user, () => {
@@ -120,6 +130,7 @@ export const useStoreMagicLink = defineStore("MagicLink", () => {
     isLoading,
     isLoggedIn,
     user,
+    oAuthResult,
 
     error,
 
