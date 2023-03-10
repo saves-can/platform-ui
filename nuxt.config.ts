@@ -1,7 +1,17 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  runtimeConfig: {
+    public: {
+      MAGICLINK_KEY: "pk_live_3537E2E4D3D38899",
+    },
+  },
   srcDir: "src/",
-  // modulesDir: ["./modules"],
+  imports: {
+    dirs: [
+      // ... or scan all modules within given directory
+      "composables/**/*.ts",
+    ],
+  },
   modules: [
     "@nuxtjs/tailwindcss",
 
@@ -10,7 +20,6 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
     "nuxt-icon",
     "nuxt-headlessui",
-    "./src/modules/core",
   ],
   tailwindcss: {
     config: {

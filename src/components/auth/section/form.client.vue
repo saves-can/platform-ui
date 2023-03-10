@@ -1,26 +1,4 @@
-<!--
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
--->
 <template>
-  <!--
-      This example requires updating your template:
-  
-      ```
-      <html class="h-full bg-gray-50">
-      <body class="h-full">
-      ```
-    -->
   <div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
       <img
@@ -44,15 +22,26 @@
 
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
       <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-        <form class="space-y-6" action="#" method="POST">
+        <form class="space-y-6" @submit.prevent="loginFn" >
           <div>
             <label for="email" class="block text-sm font-medium text-gray-700"
               >Email address | Phone number</label
             >
             <div class="mt-1">
+              <pre>
+                {{
+                  {
+                    email,
+                    error,
+                    user,
+                    isLoading,
+                    isLoggedIn,
+                  }
+                }}
+              </pre>
               <input
-                id="email"
-                name="email"
+                @submit="loginFn"
+                v-model="email"
                 type="email"
                 autocomplete="email"
                 required
@@ -61,13 +50,12 @@
             </div>
           </div>
 
-
           <div>
             <button
               type="submit"
               class="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
-            Log in | Sign up
+              Log in | Sign up
             </button>
           </div>
         </form>
@@ -145,9 +133,15 @@
             </div>
           </div>
         </div>
-
-        
       </div>
     </div>
   </div>
 </template>
+
+<script setup>
+const { email, error, user, isLoading, isLoggedIn, loginFn } =
+  useLoginWithEmailOTP();
+email.value = "fro.profesional@gmail.com";
+
+
+</script>

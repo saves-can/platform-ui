@@ -3,6 +3,7 @@
   "scripts": {
     "dev": "nuxi dev",
     "build": "NITRO_PRESET=deno nuxi build",
+    "preview": "cd .output/ && deno run -A server/index.ts",
     "deploy": "cd .output/ && deployctl deploy --project='clau-platform' --prod server/index.ts && cd ..",
     "build:deploy": "npm run build && npm run deploy"
   },
@@ -23,6 +24,7 @@
     "@pinia/nuxt": "^0.4.7",
     "@vue-hero-icons/outline": "^1.7.2",
     "@vue-hero-icons/solid": "^1.7.2",
+    "magic-sdk": "^13.6.0",
     "pinia": "^2.0.32"
   }
 }
