@@ -1,18 +1,24 @@
 import { defineStore } from "pinia";
 import { Magic } from "magic-sdk";
+import { OAuthExtension, OAuthProvider } from "@magic-ext/oauth";
 
 export const useStoreMagicLink = defineStore("MagicLink", () => {
   const { MAGICLINK_KEY } = useRuntimeConfig().public;
 
-  const m = new Magic(MAGICLINK_KEY);
+  const m = new Magic(MAGICLINK_KEY, {
+    extensions: [new OAuthExtension()],
+  });
+
   console.log({ m, MAGICLINK_KEY });
 
   const error: any = ref(null);
   const user: any = ref(null);
   const emailInput = ref("");
   const phoneInput = ref("");
+  const oAutInput = ref("github");
   const isLoggedIn: any = ref(null);
   const isLoading = ref(false);
+  const providers = ["github"];
 
   async function refreshUser() {
     console.log("refreshUser");
@@ -24,14 +30,6 @@ export const useStoreMagicLink = defineStore("MagicLink", () => {
       console.log("user.value");
     } catch (e) {
       console.log(e);
-    }
-
-    if (user.value?.phoneNumber) {
-      phoneInput.value = user.value.phoneNumber;
-    }
-
-    if (user.value?.email) {
-      emailInput.value = user.value.email;
     }
   }
 
@@ -79,6 +77,25 @@ export const useStoreMagicLink = defineStore("MagicLink", () => {
     isLoading.value = false;
   }
 
+  async function loginOAuth() {
+    isLoading.value = true;
+
+    try {
+      console.log("loginOAuth", oAutInput.value);
+
+      await m.oauth.loginWithRedirect({
+        provider: oAutInput.value as any,
+        redirectURI: "http://localhost:3000/auth",
+      });
+
+      await refreshUser();
+    } catch (e) {
+      error.value = e;
+    }
+
+    isLoading.value = false;
+  }
+
   async function setup() {
     console.log("preload");
     m.preload().then(() => console.log("Magic <iframe> loaded."));
@@ -109,6 +126,7 @@ export const useStoreMagicLink = defineStore("MagicLink", () => {
 
     loginEmail,
     loginSMS,
+    loginOAuth,
 
     logout,
   };

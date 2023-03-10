@@ -8,7 +8,7 @@ export default defineNuxtConfig({
   srcDir: "src/",
   imports: {
     dirs: [
-      "stores/**/*.ts",
+      "modules/**/*.store.ts",
     ],
   },
   components: {

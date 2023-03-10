@@ -115,6 +115,20 @@
                   <Icon name="fa6-solid:envelope" class="mx-1 text-3xl" />
                </div>
               </a>
+
+              <a
+                @click="MagicLink.loginOAuth"
+                href="#"
+                class="mt-5 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
+              >
+               
+              <div>
+                <spn class="m-auto">Github</spn >
+                  <Icon name="grommet-icons:github" class="mx-1 text-3xl" />
+               </div>
+              </a>
+
+
             </div>
           </div>
         </div>
