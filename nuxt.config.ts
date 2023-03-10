@@ -8,8 +8,9 @@ export default defineNuxtConfig({
   srcDir: "src/",
   imports: {
     dirs: [
-      // ... or scan all modules within given directory
+      // Scan all modules within given directory
       "composables/**/*.ts",
+      "stores/**/*.ts",
     ],
   },
   modules: [
