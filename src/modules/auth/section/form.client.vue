@@ -1,5 +1,17 @@
 <template>
   <div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div class="mx-auto">
+      <pre>
+        {{
+          {
+            isLoggedIn,
+            user,
+            useSMS,
+          }
+        }}
+      </pre>
+    </div>
+
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
       <img
         class="mx-auto h-12 w-auto"
@@ -9,14 +21,14 @@
       <h2
         class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900"
       >
-        Sign in to your account
+        Log in or Sign up
       </h2>
       <p class="mt-2 text-center text-sm text-gray-600">
-        Or
+        If you don't have an account we will create it.
         {{ " " }}
-        <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500"
+        <!-- <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500"
           >start your 14-day free trial</a
-        >
+        > -->
       </p>
     </div>
 
@@ -25,18 +37,9 @@
         <form class="space-y-6" @submit.prevent="login">
           <div>
             <label for="email" class="block text-sm font-medium text-gray-700">
-              {{ useSMS ? "Phone" : "Email" }}
+              Continue with {{ useSMS ? "Phone" : "Email" }}
             </label>
-            <div class="mt-1">
-              <pre>
-                {{
-                  {
-                    isLoggedIn,
-                    user,
-                    useSMS,
-                  }
-                }}
-              </pre>
+            <div class="mt-5">
               <input
                 v-if="!useSMS"
                 @submit="MagicLink.loginEmail"
@@ -65,7 +68,7 @@
               type="submit"
               class="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
-              Log in | Sign up with
+              With
               {{ useSMS ? "Phone" : "Email" }}
             </button>
           </div>
@@ -97,10 +100,10 @@
                 href="#"
                 class="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
               >
-               <div>
-                <spn class="m-auto">Code by</spn >
+                <div>
+                  <spn class="m-auto">Code by</spn>
                   <Icon name="fa6-solid:comment-sms" class="mx-1 text-3xl" />
-               </div>
+                </div>
               </a>
 
               <a
@@ -109,11 +112,10 @@
                 href="#"
                 class="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
               >
-               
-              <div>
-                <spn class="m-auto">Code by</spn >
+                <div>
+                  <spn class="m-auto">Code by</spn>
                   <Icon name="fa6-solid:envelope" class="mx-1 text-3xl" />
-               </div>
+                </div>
               </a>
 
               <a
@@ -121,14 +123,11 @@
                 href="#"
                 class="mt-5 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
               >
-               
-              <div>
-                <spn class="m-auto">Github</spn >
+                <div>
+                  <spn class="m-auto">Github</spn>
                   <Icon name="grommet-icons:github" class="mx-1 text-3xl" />
-               </div>
+                </div>
               </a>
-
-
             </div>
           </div>
         </div>
