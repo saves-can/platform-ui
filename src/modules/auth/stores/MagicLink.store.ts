@@ -3,7 +3,7 @@ import { Magic } from "magic-sdk";
 import { OAuthExtension, OAuthProvider } from "@magic-ext/oauth";
 
 export const useStoreMagicLink = defineStore("MagicLink", () => {
-  const { MAGICLINK_KEY } = useRuntimeConfig().public;
+  const { MAGICLINK_KEY, BASE_SITE } = useRuntimeConfig().public;
 
   const m = new Magic(MAGICLINK_KEY, {
     extensions: [new OAuthExtension()],
@@ -18,7 +18,6 @@ export const useStoreMagicLink = defineStore("MagicLink", () => {
   const oAutInput = ref("github");
   const isLoggedIn: any = ref(null);
   const isLoading = ref(false);
-  const providers = ["github"];
 
   async function refreshUser() {
     console.log("refreshUser");
@@ -85,7 +84,7 @@ export const useStoreMagicLink = defineStore("MagicLink", () => {
 
       await m.oauth.loginWithRedirect({
         provider: oAutInput.value as any,
-        redirectURI: "http://localhost:3000/auth",
+        redirectURI: `${BASE_SITE}/auth`,
       });
 
       await refreshUser();
