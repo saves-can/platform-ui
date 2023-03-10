@@ -99,6 +99,7 @@ export const useStoreMagicLink = defineStore("MagicLink", () => {
   async function getOAuthResult() {
     try {
       oAuthResult.value = await m.oauth.getRedirectResult();
+      isLoggedIn.value = true
     } catch (e) {
       console.log({ e });
     }
