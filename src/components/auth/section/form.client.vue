@@ -25,7 +25,7 @@
         <form class="space-y-6" @submit.prevent="login">
           <div>
             <label for="email" class="block text-sm font-medium text-gray-700">
-              {{ useSMS ? "Phone number" : "Email address" }}
+              {{ useSMS ? "Phone" : "Email" }}
             </label>
             <div class="mt-1">
               <pre>
@@ -66,7 +66,7 @@
               class="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
               Log in | Sign up with
-              {{ useSMS ? "Phone number" : "Email address" }}
+              {{ useSMS ? "Phone" : "Email" }}
             </button>
           </div>
         </form>
@@ -97,8 +97,10 @@
                 href="#"
                 class="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
               >
-                4 digit code
-                <Icon name="fa6-solid:comment-sms" class="text-3xl" />
+               <div>
+                <spn class="m-auto">Code by</spn >
+                  <Icon name="fa6-solid:comment-sms" class="mx-1 text-3xl" />
+               </div>
               </a>
 
               <a
@@ -107,8 +109,11 @@
                 href="#"
                 class="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
               >
-                4 digit code
-                <Icon name="fa6-solid:envelope" class="text-3xl" />
+               
+              <div>
+                <spn class="m-auto">Code by</spn >
+                  <Icon name="fa6-solid:envelope" class="mx-1 text-3xl" />
+               </div>
               </a>
             </div>
           </div>
