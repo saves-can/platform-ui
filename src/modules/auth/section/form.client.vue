@@ -28,6 +28,7 @@
             <pre>{{ { isLoggedIn, user, useSMS, oAuthResult } }}</pre>
           </div> -->
 
+          {{ {oAuthResult} }}
           <div v-if="isLoggedIn">
             <UiJSON class="mx-auto  text-white bg-black rounded-lg p-1 overflow-auto" :json="{ isLoggedIn, user, useSMS, oAuthResult }"/>
           </div>
