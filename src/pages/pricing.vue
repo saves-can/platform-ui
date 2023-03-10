@@ -1,8 +1,7 @@
 <template>
   <div>
-    <HomeSectionHero />
-    <HomeSectionFeatures />
-    <HomeSectionCta />
+    <PricingSectionPrices />
+    <PricingSectionTestimonials />
     <CommonSectionContact />
   </div>
 </template>
