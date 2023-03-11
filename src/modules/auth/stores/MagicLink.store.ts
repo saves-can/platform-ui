@@ -22,7 +22,6 @@ export const useStoreMagicLink = defineStore("MagicLink", () => {
 
   async function refreshUser() {
     logger.info("refreshUser");
-
     try {
       isLoggedIn.value = await m.user.isLoggedIn();
       user.value = await m.user.getMetadata();
@@ -33,6 +32,7 @@ export const useStoreMagicLink = defineStore("MagicLink", () => {
 
   async function logout() {
     logger.info("logout");
+    isLoading.value = true;
 
     try {
       await m.user.logout();
@@ -41,6 +41,8 @@ export const useStoreMagicLink = defineStore("MagicLink", () => {
       error.value = e;
       logger.error("logout", { e });
     }
+
+    isLoading.value = false;
   }
 
   async function loginEmail() {
@@ -99,7 +101,7 @@ export const useStoreMagicLink = defineStore("MagicLink", () => {
 
     }
 
-    isLoading.value = false;
+    // isLoading.value = false;
   }
 
   async function getOAuthResult() {
@@ -114,10 +116,12 @@ export const useStoreMagicLink = defineStore("MagicLink", () => {
   }
 
   async function setup() {
+    isLoading.value = true;
     logger.info("setup");
     m.preload().then(() => logger.info("Magic <iframe> loaded"));
 
     await Promise.all([refreshUser(), getOAuthResult()]);
+    isLoading.value = false;
   }
 
   watch(user, () => {
