@@ -9,7 +9,7 @@ export const useStoreMagicLink = defineStore("MagicLink", () => {
     extensions: [new OAuthExtension()],
   });
 
-  console.log({ m, MAGICLINK_KEY });
+  logger.info({ m, MAGICLINK_KEY });
 
   const error: any = ref(null);
   const user: any = ref(null);
@@ -21,29 +21,30 @@ export const useStoreMagicLink = defineStore("MagicLink", () => {
   const oAuthResult: any = ref(null);
 
   async function refreshUser() {
-    console.log("refreshUser");
+    logger.info("refreshUser");
 
     try {
       isLoggedIn.value = await m.user.isLoggedIn();
-      console.log("isLoggedIn");
       user.value = await m.user.getMetadata();
-      console.log("user.value");
     } catch (e) {
-      console.log(e);
+      logger.error("refreshUser", { e });
     }
   }
 
   async function logout() {
-    console.log("logout");
+    logger.info("logout");
+
     try {
       await m.user.logout();
       await refreshUser();
     } catch (e) {
       error.value = e;
+      logger.error("logout", { e });
     }
   }
 
   async function loginEmail() {
+    logger.info("loginEmail");
     isLoading.value = true;
 
     try {
@@ -55,16 +56,17 @@ export const useStoreMagicLink = defineStore("MagicLink", () => {
       await refreshUser();
     } catch (e) {
       error.value = e;
+      logger.error("loginEmail", { e });
     }
 
     isLoading.value = false;
   }
 
   async function loginSMS() {
+    logger.info("loginSMS");
     isLoading.value = true;
 
     try {
-      console.log("loginSMS");
       await m.auth.loginWithSMS({
         phoneNumber: phoneInput.value,
       });
@@ -72,16 +74,18 @@ export const useStoreMagicLink = defineStore("MagicLink", () => {
       await refreshUser();
     } catch (e) {
       error.value = e;
+      logger.error("loginSMS", { e });
     }
 
     isLoading.value = false;
   }
 
   async function loginOAuth() {
+    logger.info("loginOAuth");
     isLoading.value = true;
 
     try {
-      console.log("loginOAuth", oAutInput.value);
+      logger.info("oAutInput.value", oAutInput.value);
 
       await m.oauth.loginWithRedirect({
         provider: oAutInput.value as any,
@@ -91,23 +95,27 @@ export const useStoreMagicLink = defineStore("MagicLink", () => {
       await refreshUser();
     } catch (e) {
       error.value = e;
+      logger.error("loginOAuth", { e });
+
     }
 
     isLoading.value = false;
   }
 
   async function getOAuthResult() {
+    logger.info("getOAuthResult");
+
     try {
       oAuthResult.value = await m.oauth.getRedirectResult();
       isLoggedIn.value = true
     } catch (e) {
-      console.log({ e });
+      logger.error("getOAuthResult", { e });
     }
   }
 
   async function setup() {
-    console.log("preload");
-    m.preload().then(() => console.log("Magic <iframe> loaded."));
+    logger.info("setup");
+    m.preload().then(() => logger.info("Magic <iframe> loaded"));
 
     await Promise.all([refreshUser(), getOAuthResult()]);
   }

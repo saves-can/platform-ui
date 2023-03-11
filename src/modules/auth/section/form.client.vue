@@ -24,7 +24,10 @@
       <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
         <form class="space-y-6" @submit.prevent="login">
           <div v-if="isLoggedIn">
-            <UiJSON class="mx-auto  text-white bg-black rounded-lg p-1 overflow-auto" :json="{ isLoggedIn, user, useSMS, oAuthResult }"/>
+            <UiJSON
+              class="mx-auto text-white bg-black rounded-lg p-1 overflow-auto"
+              :json="{ isLoggedIn, user, useSMS, oAuthResult }"
+            />
           </div>
 
           <div v-if="!isLoggedIn">
@@ -93,7 +96,7 @@
                 class="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
               >
                 <div>
-                  <spn class="m-auto">Code by</spn>
+                  <span class="m-auto">Code by</span>
                   <Icon name="fa6-solid:comment-sms" class="mx-1 text-3xl" />
                 </div>
               </a>
@@ -105,7 +108,7 @@
                 class="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
               >
                 <div>
-                  <spn class="m-auto">Code by</spn>
+                  <span class="m-auto">Code by</span>
                   <Icon name="fa6-solid:envelope" class="mx-1 text-3xl" />
                 </div>
               </a>
@@ -116,7 +119,7 @@
                 class="mt-5 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
               >
                 <div>
-                  <spn class="m-auto">Github</spn>
+                  <span class="m-auto">Github</span>
                   <Icon name="grommet-icons:github" class="mx-1 text-3xl" />
                 </div>
               </a>
@@ -132,7 +135,6 @@
 import { storeToRefs } from "pinia";
 
 const MagicLink = useStoreMagicLink();
-
 const [useSMS, toggleSMS] = useToggle();
 
 const login = async () => {
@@ -149,7 +151,6 @@ const {
 } = storeToRefs(MagicLink);
 
 onMounted(() => {
-  console.log("on-mounted");
   MagicLink.setup();
 });
 
@@ -158,6 +159,7 @@ watch(user, () => {
     useSMS.value = true;
   }
 });
+
 </script>
 
 <style scoped>

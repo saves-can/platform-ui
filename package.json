@@ -9,15 +9,12 @@
     "build:deploy": "npm run build && npm run deploy"
   },
   "devDependencies": {
-    "@nuxtjs/i18n": "^8.0.0-beta.10",
     "@nuxtjs/tailwindcss": "^6.4.1",
-    "@vite-pwa/nuxt": "^0.0.6",
     "@vueuse/core": "^9.13.0",
     "@vueuse/nuxt": "^9.13.0",
     "nuxt": "npm:nuxt3@latest",
     "nuxt-headlessui": "^1.1.1",
-    "nuxt-icon": "^0.3.2",
-    "nuxt-seo-kit": "^1.3.1"
+    "nuxt-icon": "^0.3.2"
   },
   "dependencies": {
     "@headlessui/vue": "^1.7.11",
