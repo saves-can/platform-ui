@@ -18,7 +18,7 @@
     </div>
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
       <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-        <form class="space-y-6" @submit.prevent="login">
+        <div class="space-y-6" >
           <div v-show="isLoggedIn">
             <UiJSON
               class="mx-auto text-white bg-black rounded-lg p-1 overflow-auto"
@@ -54,9 +54,10 @@
           </div>
 
           <div v-show="!isLoggedIn">
+
             <button
               :disabled="isLoading"
-              type="submit"
+              @click="login"
               class="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
               <div v-show="isLoading" role="status">
@@ -80,12 +81,12 @@
               </div>
 
               <span v-show="!isLoading">
-                Get a Code by
+                Get a code by
                 {{ useSMS ? "Phone" : "Email" }}
               </span>
             </button>
           </div>
-        </form>
+        </div>
 
         <div v-show="isLoggedIn">
           <a
