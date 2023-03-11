@@ -2,7 +2,7 @@
   <div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
       <img
-        class="mx-auto h-16 w-auto rounded-lg"
+        class="mx-auto h-16 w-auto rounded-lg shadow-lg"
         src="/logo.jpg"
         alt="Your Company"
       />
@@ -19,20 +19,20 @@
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
       <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
         <form class="space-y-6" @submit.prevent="login">
-          <div v-if="isLoggedIn">
+          <div v-show="isLoggedIn">
             <UiJSON
               class="mx-auto text-white bg-black rounded-lg p-1 overflow-auto"
               :json="{ isLoggedIn, user, useSMS, oAuthResult }"
             />
           </div>
 
-          <div v-if="!isLoggedIn">
+          <div v-show="!isLoggedIn">
             <label for="email" class="block text-sm font-medium text-gray-700">
               Continue with {{ useSMS ? "Phone" : "Email" }}
             </label>
             <div class="mt-5">
               <input
-                v-if="!useSMS"
+                v-show="!useSMS"
                 @submit="MagicLink.loginEmail"
                 type="email"
                 v-model="email"
@@ -42,7 +42,7 @@
               />
 
               <input
-                v-if="useSMS"
+                v-show="useSMS"
                 @submit="MagicLink.loginSMS"
                 v-model="phone"
                 type="tel"
@@ -53,14 +53,13 @@
             </div>
           </div>
 
-          <div>
+          <div v-show="!isLoggedIn">
             <button
               :disabled="isLoading"
-              v-if="!isLoggedIn"
               type="submit"
               class="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
-              <div v-if="isLoading" role="status">
+              <div v-show="isLoading" role="status">
                 <svg
                   aria-hidden="true"
                   class="w-6 h-6 mr-2 text-white animate-spin fill-indigo-600"
@@ -80,21 +79,30 @@
                 <span class="sr-only">Loading...</span>
               </div>
 
-              <spa v-if="!isLoading">
+              <span v-show="!isLoading">
                 Get a Code by
                 {{ useSMS ? "Phone" : "Email" }}
-              </spa>
+              </span>
             </button>
           </div>
         </form>
 
+        <div v-show="isLoggedIn">
+          <a
+            href="/app"
+            class="flex w-full my-3 justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          >
+            Go to App <Icon name="mdi:login-variant" class="text-xl mx-1" />
+          </a>
+        </div>
+
         <button
           :disabled="isLoading"
-          v-if="isLoggedIn"
+          v-show="isLoggedIn"
           @click="MagicLink.logout"
           class="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
         >
-          <div v-if="isLoading" role="status">
+          <div v-show="isLoading" role="status">
             <svg
               aria-hidden="true"
               class="w-6 h-6 mr-2 text-white animate-spin fill-indigo-600"
@@ -114,10 +122,10 @@
             <span class="sr-only">Loading...</span>
           </div>
 
-          <span v-if="!isLoading"> Logout</span>
+          <span v-show="!isLoading"> Logout </span>
         </button>
 
-        <div class="mt-6" v-if="!isLoggedIn">
+        <div class="mt-6" v-show="!isLoggedIn">
           <div class="relative">
             <div class="absolute inset-0 flex items-center">
               <div class="w-full border-t border-gray-300" />
@@ -130,7 +138,7 @@
           <div class="mt-6 grid grid-cols-1 gap-3">
             <div>
               <a
-                v-if="!useSMS"
+                v-show="!useSMS"
                 @click="toggleSMS()"
                 href="#"
                 class="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
@@ -142,7 +150,7 @@
               </a>
 
               <a
-                v-if="useSMS"
+                v-show="useSMS"
                 @click="toggleSMS()"
                 href="#"
                 class="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"

@@ -53,8 +53,8 @@
               </TransitionChild>
               <div class="flex flex-shrink-0 items-center px-4">
                 <img
-                  class="h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                  class="h-10 rounded-lg shadow-lg w-auto"
+                  src="/logo.jpg"
                   alt="Your Company"
                 />
               </div>
@@ -137,13 +137,13 @@
                 </div>
 
                 <ComboboxOptions
-                  v-if="query === '' || filteredProjects.length > 0"
+                  v-show="query === '' || filteredProjects.length > 0"
                   static
                   class="max-h-80 scroll-py-2 divide-y divide-gray-500 divide-opacity-20 overflow-y-auto"
                 >
                   <li class="p-2">
                     <h2
-                      v-if="query === ''"
+                      v-show="query === ''"
                       class="mt-4 mb-2 px-3 text-xs font-semibold text-gray-200"
                     >
                       Recent searches
@@ -175,7 +175,7 @@
                             project.name
                           }}</span>
                           <span
-                            v-if="active"
+                            v-show="active"
                             class="ml-3 flex-none text-gray-400"
                             >Jump to...</span
                           >
@@ -183,7 +183,7 @@
                       </ComboboxOption>
                     </ul>
                   </li>
-                  <li v-if="query === ''" class="p-2">
+                  <li v-show="query === ''" class="p-2">
                     <h2 class="sr-only">Quick actions</h2>
                     <ul class="text-sm text-gray-400">
                       <ComboboxOption
@@ -223,7 +223,7 @@
                 </ComboboxOptions>
 
                 <div
-                  v-if="query !== '' && filteredProjects.length === 0"
+                  v-show="query !== '' && filteredProjects.length === 0"
                   class="py-14 px-6 text-center sm:px-14"
                 >
                   <FolderIcon
@@ -252,8 +252,8 @@
           class="flex h-16 flex-shrink-0 items-center bg-gray-900 px-4 rounded-lg"
         >
           <img
-            class="h-8 w-auto"
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+            class="h-10 rounded-lg shadow-lg w-auto"
+            src="/logo.jpg"
             alt="Your Company"
           />
         </div>
@@ -280,7 +280,7 @@
                 ]"
                 aria-hidden="true"
               />
-              {{ item.name }} x
+              {{ item.name }}
             </a>
           </nav>
         </div>

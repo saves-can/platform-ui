@@ -65,7 +65,7 @@
                 {{ tier.name }}
               </h3>
               <p
-                v-if="tier.mostPopular"
+                v-show="tier.mostPopular"
                 class="rounded-full bg-indigo-600/10 py-1 px-2.5 text-xs font-semibold leading-5 text-indigo-600"
               >
                 Most popular

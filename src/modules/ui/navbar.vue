@@ -2,14 +2,14 @@
   <div class="px-6 pt-6 lg:px-8">
     <nav class="flex items-center justify-between" aria-label="Global">
       <div class="flex lg:flex-1">
-        <a href="#" class="-m-1.5 p-1.5">
-          <span class="sr-only">Your Company</span>
+        <NuxtLink to="/" class="-m-1.5 p-1.5">
+          <span class="sr-only">CLAU</span>
           <img
-            class="h-8"
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+            class="h-10 rounded-lg shadow-lg"
+            src="/logo.jpg"
             alt=""
           />
-        </a>
+        </NuxtLink>
       </div>
       <div class="flex lg:hidden">
         <button
@@ -31,8 +31,8 @@
         >
       </div>
       <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-        <a href="/auth" class="text-sm font-semibold leading-6 text-gray-900"
-          >Log in | Sign up </a
+        <NuxtLink to="/auth" class="text-sm font-semibold leading-6 text-gray-900"
+          >Log in | Sign up </NuxtLink
         >
       </div>
     </nav>
@@ -42,14 +42,14 @@
         class="fixed inset-0 z-10 overflow-y-auto bg-white px-6 py-6 lg:hidden"
       >
         <div class="flex items-center justify-between">
-          <a href="#" class="-m-1.5 p-1.5">
+          <NuxtLink to="/" class="-m-1.5 p-1.5">
             <span class="sr-only">Your Company</span>
             <img
-              class="h-8"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+            class="h-10 rounded-lg shadow-lg"
+              src="/logo.jpg"
               alt=""
             />
-          </a>
+          </NuxtLink>
           <button
             type="button"
             class="-m-2.5 rounded-md p-2.5 text-gray-700"
