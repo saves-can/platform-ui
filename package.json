@@ -21,10 +21,14 @@
     "@heroicons/vue": "^2.0.16",
     "@magic-ext/oauth": "^7.6.0",
     "@pinia/nuxt": "^0.4.7",
+    "@trpc/client": "^10.15.0",
+    "@trpc/server": "^10.15.0",
     "@vue-hero-icons/outline": "^1.7.2",
     "@vue-hero-icons/solid": "^1.7.2",
     "magic-sdk": "^13.6.0",
     "pinia": "^2.0.32",
-    "vue3-json-source-viewer": "^2.4.2"
+    "trpc-nuxt": "^0.7.0",
+    "vue3-json-source-viewer": "^2.4.2",
+    "zod": "^3.21.4"
   }
 }
