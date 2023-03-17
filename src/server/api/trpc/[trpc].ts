@@ -4,15 +4,12 @@
  */
 import { createNuxtApiHandler } from "trpc-nuxt";
 import { router } from "~/server/trpc";
-import { helloProcedure } from "~/server/trpc/hello";
-import { z } from "zod";
+import { hello } from "~/server/trpc/hello";
 
 export const appRouter = router({
-  hello: helloProcedure,
+  hello,
 });
 
-// export only the type definition of the API
-// None of the actual implementation is exposed to the client
 export type AppRouter = typeof appRouter;
 
 // export API handler

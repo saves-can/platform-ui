@@ -2,7 +2,10 @@
   <div>
     App
     <UiJSON :json="trpcResponse" />
+    <TestPusher />
     <button @click="trpcResponse.execute">execute</button>
+
+    
   </div>
 </template>
 
@@ -15,5 +18,5 @@ const { $api } = useNuxtApp();
 
 const trpcResponse = await $api.hello.useQuery({ text: "client" });
 
-logger.info({ trpcResponse });
+// logger.info({ trpcResponse });
 </script>

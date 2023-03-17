@@ -1,0 +1,27 @@
+<template>
+  <div>
+    PUSHER!
+  </div>
+</template>
+
+<script setup>
+import PusherJS from "pusher-js";
+
+let client = new PusherJS("8efe3b5d-d99f-4e67-b1e9-39c8e3c49774", {
+  wsHost:
+    "clau-platform-6a998e8f-4990-48ac-9304-5c5b98f6d694.fro-dev-clau.workers.dev",
+  wsPort: 443,
+  wssPort: 443,
+  forceTLS: true,
+  encrypted: true,
+  disableStats: true,
+  enabledTransports: ["ws", "wss"],
+  cluster: "",
+});
+
+PusherJS.logToConsole = false
+
+client.subscribe("chat-room").bind("new-message", ({ message }) => {
+  logger.info(`Received: ${message}`);
+});
+</script>
