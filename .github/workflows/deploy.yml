@@ -39,7 +39,7 @@ jobs:
           deno-version: v1.x
 
       - name: Install dependencies ⬇️
-        run: npm ci && 
+        run: npm ci
 
       - name: Install deployctl ⬇️
         run: deno install -A -r -f https://deno.land/x/deploy/deployctl.ts
