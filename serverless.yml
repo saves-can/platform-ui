@@ -1,0 +1,18 @@
+service: clau-platform
+
+provider:
+  name: aws
+  stage: stage
+  runtime: nodejs18.x
+
+package:
+  patterns:
+    - "!**"
+    - ".output/**"
+    - ".env"
+    
+functions:
+  api:
+    handler: .output/server/index.handler
+    events:
+      - httpApi: "*"

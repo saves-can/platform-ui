@@ -4,10 +4,11 @@ export default defineNuxtConfig({
     public: {
       MAGICLINK_KEY: "pk_live_3537E2E4D3D38899",
       BASE_SITE: "https://clau-dev.com",
+      BASE_API: "https://mlep1rdsr6.execute-api.us-east-1.amazonaws.com"
     },
   },
   srcDir: "src/",
-  serverDir: "",
+  // serverDir: "",
   imports: {
     dirs: ["modules/**/*.store.ts"],
   },

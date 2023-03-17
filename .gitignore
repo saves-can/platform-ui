@@ -10,3 +10,4 @@ coverage
 sw.*
 .env
 /.output
+/.serverless

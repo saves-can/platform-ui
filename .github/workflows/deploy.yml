@@ -43,9 +43,15 @@ jobs:
 
       - name: Install deployctl ⬇️
         run: deno install -A -r -f https://deno.land/x/deploy/deployctl.ts
+
+      - name: Build - AWS Lambda ⚒️
+        run: npm run build:aws-lambda
       
-      - name: Build ⚒️
-        run: npm run build
+      - name: Deploy - AWS Lambda 🚀
+        run: npm run deploy:aws-lambda
+
+      - name: Build - Deno ⚒️
+        run: npm run build:deno
       
-      - name: Deploy 🚀
-        run: npm run deploy
+      - name: Deploy - Deno 🚀
+        run: npm run deploy:deno
