@@ -7,8 +7,10 @@ export default defineNuxtConfig({
       BASE_API: "https://mlep1rdsr6.execute-api.us-east-1.amazonaws.com"
     },
   },
+  routeRules: {
+    '/api/**': { cors: true }, // Add cors headers
+  },
   srcDir: "src/",
-  // serverDir: "",
   imports: {
     dirs: ["modules/**/*.store.ts"],
   },
@@ -35,7 +37,6 @@ export default defineNuxtConfig({
 
   tailwindcss: {
     config: {
-      /* Extend the Tailwind config here */
       content: ["src/**/**.vue"],
     },
   },
