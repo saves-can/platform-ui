@@ -8,7 +8,7 @@ export default defineNuxtConfig({
     },
   },
   routeRules: {
-    '/api/**': { cors: true }, // Add cors headers
+    '/*': { cors: true }, // Add cors headers
   },
   srcDir: "src/",
   imports: {

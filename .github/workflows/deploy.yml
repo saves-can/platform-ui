@@ -14,7 +14,7 @@ on:
         options:
           - prod
 
-run-name: Deploy to '${{ github.ref == 'refs/heads/main' && inputs.stage || 'prod' }}' commit '${{ github.sha }}'
+run-name: Deploy to '${{ github.ref == 'refs/heads/main' && inputs.stage || 'prod' }}'
 
 env:
   NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -22,9 +22,9 @@ env:
   DENO_DEPLOY_TOKEN: ${{ secrets.DENO_DEPLOY_TOKEN }}
 
 jobs:
-  deploy:
+  deploy-deno:
     runs-on: ubuntu-latest
-    name: Deploy 
+    name: Deploy to Deno Deploy
     
     steps:
       - name: Checkout code 📁
@@ -44,6 +44,26 @@ jobs:
       - name: Install deployctl ⬇️
         run: deno install -A -r -f https://deno.land/x/deploy/deployctl.ts
 
+      - name: Build - Deno ⚒️
+        run: npm run build:deno
+      
+      - name: Deploy - Deno 🚀
+        run: npm run deploy:deno
+
+  deploy-aws-lambda:
+    runs-on: ubuntu-latest
+    name: Deploy to AWS Lambda
+    
+    steps:
+      - name: Checkout code 📁
+        uses: actions/checkout@v3
+      
+      - name: Add npm credentials 🔒
+        run: echo "//npm.pkg.github.com/:_authToken=$NODE_AUTH_TOKEN" > ~/.npmrc
+
+      - name: Install dependencies ⬇️
+        run: npm ci
+
       - name: Install serverless CLI ⬇️
         run: npm i -g serverless
 
@@ -55,9 +75,3 @@ jobs:
       
       - name: Deploy - AWS Lambda 🚀
         run: npm run deploy:aws-lambda
-
-      - name: Build - Deno ⚒️
-        run: npm run build:deno
-      
-      - name: Deploy - Deno 🚀
-        run: npm run deploy:deno
