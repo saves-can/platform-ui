@@ -41,7 +41,12 @@ export default defineNuxtConfig({
     "@pinia-plugin-persistedstate/nuxt",
     "nuxt-schema-org",
     "magic-regexp/nuxt",
-    "nuxt-security",
+    /**
+     * TODO: Customize to:
+     * - log in console
+     * - use remote images
+     */
+    // "nuxt-security",
   ],
 
   tailwindcss: {
