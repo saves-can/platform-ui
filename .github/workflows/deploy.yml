@@ -47,6 +47,9 @@ jobs:
       - name: Build - Deno ⚒️
         run: npm run build:deno
       
+      - name: Preview - Deno 👀
+        run: npm run preview:deno & sleep 1 && kill $!
+      
       - name: Deploy - Deno 🚀
         run: npm run deploy:deno
 
