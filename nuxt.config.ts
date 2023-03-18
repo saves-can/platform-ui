@@ -7,9 +7,9 @@ export default defineNuxtConfig({
       BASE_API: "https://mlep1rdsr6.execute-api.us-east-1.amazonaws.com"
     },
   },
-  routeRules: {
-    '/*': { cors: true }, // Add cors headers
-  },
+  // routeRules: {
+  //   '/api/**': { cors: true }, // Add cors headers
+  // },
   srcDir: "src/",
   imports: {
     dirs: ["modules/**/*.store.ts"],
