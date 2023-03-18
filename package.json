@@ -37,6 +37,7 @@
     "@vue-hero-icons/solid": "^1.7.2",
     "magic-regexp": "^0.6.3",
     "magic-sdk": "^13.6.0",
+    "nuxt-swiper": "^1.0.1",
     "pinia": "^2.0.32",
     "pusher": "^5.1.2",
     "pusher-js": "^8.0.1",

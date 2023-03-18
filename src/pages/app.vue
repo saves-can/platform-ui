@@ -1,11 +1,14 @@
 <template>
   <div>
-    App
-    <UiJSON :json="trpcResponse" />
-    <TestPusher />
-    <button @click="trpcResponse.execute">execute</button>
+    <div class="border-2 border-red-500 rounded-lg p-1 my-5">
+      <UiJSON :json="trpcResponse" />
+      <TestPusher />
+      <button @click="trpcResponse.execute">execute</button>
+    </div>
 
-    
+    <div class="border-2 border-red-500 rounded-lg p-1 my-5">
+      <TestSwiper />
+    </div>
   </div>
 </template>
 

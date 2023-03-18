@@ -47,6 +47,7 @@ export default defineNuxtConfig({
      * - use remote images
      */
     // "nuxt-security",
+    "nuxt-swiper",
   ],
 
   tailwindcss: {
