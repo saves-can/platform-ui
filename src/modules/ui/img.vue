@@ -1,5 +1,5 @@
 <template>
-  <nuxt-img :src="image" v-bind="$attrs" />
+  <img :src="image" v-bind="$attrs" />
 </template>
 
 <script setup>

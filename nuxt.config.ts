@@ -36,6 +36,9 @@ export default defineNuxtConfig({
     "nuxt-icon",
     "nuxt-headlessui",
     "@nuxtjs/i18n",
+    /**
+     * HINT: Currently doesn't work with DenoDeploy
+     */
     "@nuxt/image-edge",
     "@nuxtjs/device",
     "@pinia-plugin-persistedstate/nuxt",
@@ -66,9 +69,9 @@ export default defineNuxtConfig({
     },
   },
 
-  image: {
-    domains: ["bucket.clau-dev.com"],
-  },
+  // image: {
+  //   domains: ["bucket.clau-dev.com"],
+  // },
 
   schemaOrg: {},
 });
