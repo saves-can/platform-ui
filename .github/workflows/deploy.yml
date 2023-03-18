@@ -24,7 +24,7 @@ env:
 jobs:
   deploy-deno:
     runs-on: ubuntu-latest
-    name: Deploy to Deno Deploy
+    name: Deploy UI to Deno Deploy
     
     steps:
       - name: Checkout code 📁
@@ -55,7 +55,9 @@ jobs:
 
   deploy-aws-lambda:
     runs-on: ubuntu-latest
-    name: Deploy to AWS Lambda
+    name: Deploy API to AWS Lambda
+    needs: deploy-deno
+    if: ${{ needs.deploy-deno.result == 'success' }}
     
     steps:
       - name: Checkout code 📁
