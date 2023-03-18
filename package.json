@@ -38,6 +38,7 @@
     "magic-regexp": "^0.6.3",
     "magic-sdk": "^13.6.0",
     "nuxt-swiper": "^1.0.1",
+    "nuxt-typed-router": "^3.0.6",
     "pinia": "^2.0.32",
     "pusher": "^5.1.2",
     "pusher-js": "^8.0.1",

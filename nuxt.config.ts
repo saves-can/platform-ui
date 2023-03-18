@@ -39,7 +39,7 @@ export default defineNuxtConfig({
     /**
      * HINT: Currently doesn't work with DenoDeploy
      */
-    "@nuxt/image-edge",
+    // "@nuxt/image-edge",
     "@nuxtjs/device",
     "@pinia-plugin-persistedstate/nuxt",
     "nuxt-schema-org",
@@ -51,6 +51,7 @@ export default defineNuxtConfig({
      */
     // "nuxt-security",
     "nuxt-swiper",
+    "nuxt-typed-router"
   ],
 
   tailwindcss: {
