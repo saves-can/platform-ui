@@ -40,6 +40,7 @@ export default defineNuxtConfig({
     "@nuxtjs/device",
     "@pinia-plugin-persistedstate/nuxt",
     "nuxt-schema-org",
+    "magic-regexp/nuxt"
   ],
 
   tailwindcss: {
