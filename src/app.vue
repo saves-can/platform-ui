@@ -4,15 +4,12 @@
       <Link rel="icon" type="image/x-icon" :href="favicon" />
     </Head>
 
-    <SchemaOrgOrganization
-      name="Clau"
-      :logo="logo"
-    />
+    <SchemaOrgOrganization name="Clau" :logo="logo" />
     <SchemaOrgWebSite name="Clau" />
     <SchemaOrgWebPage />
 
     <NuxtLayout>
-      <NuxtPage />
+      <NuxtPage class="overflow-x-hidden" />
     </NuxtLayout>
   </div>
 </template>
