@@ -51,7 +51,8 @@ export default defineNuxtConfig({
      */
     // "nuxt-security",
     "nuxt-swiper",
-    "nuxt-typed-router"
+    "nuxt-typed-router",
+    "@nuxtjs/partytown",
   ],
 
   tailwindcss: {
