@@ -11,4 +11,9 @@
 definePageMeta({
   layout: "home",
 });
+
+useServerSeoMeta({
+  title: 'Clau',
+  ogTitle: 'Clau',
+})
 </script>

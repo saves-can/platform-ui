@@ -10,4 +10,9 @@
 definePageMeta({
   layout: "home",
 });
+
+useServerSeoMeta({
+  title: "Clau Pricing",
+  ogTitle: "Clau Pricing",
+});
 </script>

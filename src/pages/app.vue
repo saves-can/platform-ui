@@ -20,6 +20,11 @@ definePageMeta({
   layout: "app",
 });
 
+useServerSeoMeta({
+  title: 'Clau App',
+  ogTitle: 'Clau App',
+})
+
 const { $api } = useNuxtApp();
 
 const trpcResponse = await $api.hello.useQuery({ text: "client" });

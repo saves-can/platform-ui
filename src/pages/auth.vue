@@ -8,4 +8,9 @@
 definePageMeta({
   layout: "home",
 });
+
+useServerSeoMeta({
+  title: 'Clau Auth',
+  ogTitle: 'Clau Auth',
+})
 </script>
