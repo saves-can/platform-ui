@@ -122,12 +122,12 @@ jobs:
           name: build-${{ github.sha }}-${{ github.run_number }}-deno
 
       - name: Unzip Build Artifact - Deno 📦
-        run: tar -xf build-${{ github.sha }}-${{ github.run_number }}-deno.zip -C build-deno
+        run: unzip build-${{ github.sha }}-${{ github.run_number }}-deno.zip -d build-deno
 
       - name: Deploy - Deno 🚀
         working-directory: ./build-deno
         run: npm run deploy:deno
-  
+
   deploy-api:
     runs-on: ubuntu-latest
     name: Deploy API to AWS Lambda
@@ -158,7 +158,7 @@ jobs:
           name: build-${{ github.sha }}-${{ github.run_number }}-aws-lambda
 
       - name: Unzip Build Artifact - AWS Lambda 📦
-        run: tar -xf build-${{ github.sha }}-${{ github.run_number }}-aws-lambda.zip -C build-aws-lambda
+        run: unzip build-${{ github.sha }}-${{ github.run_number }}-aws-lambda.zip -d build-aws-lambda
 
       - name: Deploy - AWS Lambda 🚀
         working-directory: ./build-aws-lambda
