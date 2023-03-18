@@ -164,4 +164,4 @@ jobs:
 
       - name: Deploy - AWS Lambda 🚀
         working-directory: ./build-aws-lambda
-        run: serverless deploy --force
+        run: serverless deploy --force --config serverless.prod.yml
