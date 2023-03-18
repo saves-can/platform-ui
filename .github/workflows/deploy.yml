@@ -47,14 +47,14 @@ jobs:
       - name: Preview - Deno 👀
         run: npm run preview:deno & sleep 1 && kill $!
 
-      - name: Zip project files 📦
-        run: zip -r project.zip .
+      - name: Zip project files - Deno 📦
+        run: zip -r build-${{ github.sha }}-${{ github.run_number }}-deno.zip .
 
       - name: Upload build artifact - Deno 📦
         uses: actions/upload-artifact@v2
         with:
           name: build-${{ github.sha }}-${{ github.run_number }}-deno
-          path: project.zip
+          path: build-${{ github.sha }}-${{ github.run_number }}-deno.zip
           retention-days: 7
 
   build-aws-lambda:
@@ -80,19 +80,19 @@ jobs:
       - name: Preview - AWS Lambda 👀
         run: npm run preview:aws-lambda & sleep 3 && kill $!
 
-      - name: Zip project files 📦
-        run: zip -r project.zip .
+      - name: Zip project files - AWS Lambda 📦
+        run: zip -r build-${{ github.sha }}-${{ github.run_number }}-aws-lambda.zip .
 
       - name: Upload build artifact - AWS Lambda 📦
         uses: actions/upload-artifact@v2
         with:
           name: build-${{ github.sha }}-${{ github.run_number }}-aws-lambda
-          path: project.zip
+          path: build-${{ github.sha }}-${{ github.run_number }}-aws-lambda.zip
           retention-days: 7
 
-  deploy:
+  deploy-ui:
     runs-on: ubuntu-latest
-    name: Deploy UI and API
+    name: Deploy UI to Deno Deploy
     needs:
       - build-deno
       - build-aws-lambda
@@ -116,19 +116,41 @@ jobs:
       - name: Install dependencies ⬇️
         run: npm ci
 
+      - name: Download Build Artifact - Deno 📦
+        uses: actions/download-artifact@v2
+        with:
+          name: build-${{ github.sha }}-${{ github.run_number }}-deno
+
+      - name: Unzip Build Artifact - Deno 📦
+        run: tar -xf build-${{ github.sha }}-${{ github.run_number }}-deno.zip -C build-deno
+
+      - name: Deploy - Deno 🚀
+        working-directory: ./build-deno
+        run: npm run deploy:deno
+  
+  deploy-api:
+    runs-on: ubuntu-latest
+    name: Deploy API to AWS Lambda
+    needs:
+      - build-deno
+      - build-aws-lambda
+    if: ${{ needs.build-deno.result == 'success' && needs.build-aws-lambda.result == 'success' }}
+
+    steps:
+      - name: Checkout code 📁
+        uses: actions/checkout@v3
+
+      - name: Add npm credentials 🔒
+        run: echo "//npm.pkg.github.com/:_authToken=$NODE_AUTH_TOKEN" > ~/.npmrc
+
+      - name: Install dependencies ⬇️
+        run: npm ci
+
       - name: Install serverless CLI ⬇️
         run: npm i -g serverless
 
       - name: Setup AWS keys
         run: serverless config credentials --provider aws --key ${{ secrets.CLAU_AWS_KEY }} --secret ${{ secrets.CLAU_AWS_SECRET }}
-
-      - name: Download Build Artifact - Deno📦
-        uses: actions/download-artifact@v2
-        with:
-          name: build-${{ github.sha }}-${{ github.run_number }}-deno
-
-      - name: Unzip Build Artifact - Deno📦
-        run: tar -xf build-${{ needs.build-deno.outputs.build_id }}-deno.tar.gz -C build-deno
 
       - name: Download Build Artifact - AWS Lambda 📦
         uses: actions/download-artifact@v2
@@ -136,11 +158,7 @@ jobs:
           name: build-${{ github.sha }}-${{ github.run_number }}-aws-lambda
 
       - name: Unzip Build Artifact - AWS Lambda 📦
-        run: tar -xf build-${{ needs.build-aws-lambda.outputs.build_id }}-aws-lambda.tar.gz -C build-aws-lambda
-
-      - name: Deploy - Deno 🚀
-        working-directory: ./build-deno
-        run: npm run deploy:deno
+        run: tar -xf build-${{ github.sha }}-${{ github.run_number }}-aws-lambda.zip -C build-aws-lambda
 
       - name: Deploy - AWS Lambda 🚀
         working-directory: ./build-aws-lambda
