@@ -52,11 +52,7 @@
                 </div>
               </TransitionChild>
               <div class="flex flex-shrink-0 items-center px-4">
-                <img
-                  class="h-10 rounded-lg shadow-lg w-auto"
-                  src="/logo.jpg"
-                  alt="Your Company"
-                />
+                <BrandLogo class="h-10 rounded-lg shadow-lg w-auto" />
               </div>
               <div class="mt-5 h-0 flex-1 overflow-y-auto">
                 <nav class="space-y-1 px-2">
@@ -251,11 +247,7 @@
         <div
           class="flex h-16 flex-shrink-0 items-center bg-gray-900 px-4 rounded-lg"
         >
-          <img
-            class="h-10 rounded-lg shadow-lg w-auto"
-            src="/logo.jpg"
-            alt="Your Company"
-          />
+          <BrandLogo class="h-10 rounded-lg shadow-lg w-auto" />
         </div>
         <div class="flex flex-1 flex-col overflow-y-auto">
           <nav class="flex-1 space-y-1 px-2 py-4">
@@ -338,7 +330,7 @@
                   class="flex max-w-xs items-center rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 >
                   <span class="sr-only">Open user menu</span>
-                  <img
+                  <nuxt-img
                     class="h-8 w-8 rounded-full"
                     src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                     alt=""

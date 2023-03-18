@@ -98,7 +98,6 @@ export const useStoreMagicLink = defineStore("MagicLink", () => {
     } catch (e) {
       error.value = e;
       logger.error("loginOAuth", { e });
-
     }
 
     // isLoading.value = false;
@@ -109,7 +108,7 @@ export const useStoreMagicLink = defineStore("MagicLink", () => {
 
     try {
       oAuthResult.value = await m.oauth.getRedirectResult();
-      isLoggedIn.value = true
+      isLoggedIn.value = true;
     } catch (e) {
       logger.error("getOAuthResult", { e });
     }

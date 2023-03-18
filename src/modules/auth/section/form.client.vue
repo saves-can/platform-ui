@@ -1,11 +1,7 @@
 <template>
   <div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
-      <img
-        class="mx-auto h-16 w-auto rounded-lg shadow-lg"
-        src="/logo.jpg"
-        alt="Your Company"
-      />
+      <BrandLogo class="h-16 mx-auto w-auto rounded-lg shadow-lg" />
       <h2
         class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900"
       >
@@ -19,7 +15,6 @@
 
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
       <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-        
         <div class="space-y-3" v-show="!isLoggedIn">
           <label for="email" class="block text-sm font-medium text-gray-700">
             Continue with {{ useSMS ? "Phone" : "Email" }}

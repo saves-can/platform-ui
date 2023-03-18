@@ -13,6 +13,7 @@
     "build:deploy": "npm run build:deploy:aws-lambda && npm run build:deploy:deno"
   },
   "devDependencies": {
+    "@nuxt/image-edge": "^1.0.0-27968280.9739e4d",
     "@nuxtjs/i18n": "npm:@nuxtjs/i18n-edge",
     "@nuxtjs/tailwindcss": "^6.4.1",
     "@vueuse/core": "^9.13.0",

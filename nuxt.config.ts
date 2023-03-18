@@ -8,6 +8,7 @@ export default defineNuxtConfig({
       MAGICLINK_KEY: "pk_live_3537E2E4D3D38899",
       BASE_SITE: "https://clau-dev.com",
       BASE_API: "https://mlep1rdsr6.execute-api.us-east-1.amazonaws.com",
+      BASE_BUCKET: "https://bucket.clau-dev.com",
     },
   },
   srcDir: "src/",
@@ -34,6 +35,7 @@ export default defineNuxtConfig({
     "nuxt-icon",
     "nuxt-headlessui",
     "@nuxtjs/i18n",
+    "@nuxt/image-edge",
   ],
 
   tailwindcss: {
@@ -50,5 +52,9 @@ export default defineNuxtConfig({
       locale: "en",
       messages: { en, es },
     },
+  },
+
+  image: {
+    domains: ["bucket.clau-dev.com"],
   },
 });

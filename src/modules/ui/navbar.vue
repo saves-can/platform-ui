@@ -4,11 +4,7 @@
       <div class="flex lg:flex-1">
         <NuxtLink to="/" class="-m-1.5 p-1.5">
           <span class="sr-only">CLAU</span>
-          <img
-            class="h-10 rounded-lg shadow-lg"
-            src="/logo.jpg"
-            alt=""
-          />
+          <BrandLogo class="h-10 rounded-lg shadow-lg" />
         </NuxtLink>
       </div>
       <div class="flex lg:hidden">
@@ -31,9 +27,11 @@
         >
       </div>
       <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-        <NuxtLink to="/auth" class="text-sm font-semibold leading-6 text-gray-900"
-          >Log in | Sign up </NuxtLink
-        >
+        <NuxtLink
+          to="/auth"
+          class="text-sm font-semibold leading-6 text-gray-900"
+          >Log in | Sign up
+        </NuxtLink>
       </div>
     </nav>
 
@@ -44,11 +42,7 @@
         <div class="flex items-center justify-between">
           <NuxtLink to="/" class="-m-1.5 p-1.5">
             <span class="sr-only">Your Company</span>
-            <img
-            class="h-10 rounded-lg shadow-lg"
-              src="/logo.jpg"
-              alt=""
-            />
+            <BrandLogo class="h-10 rounded-lg shadow-lg" />
           </NuxtLink>
           <button
             type="button"
@@ -84,17 +78,16 @@
   </div>
 </template>
 
-  
 <script setup>
-import { Dialog, DialogPanel } from '@headlessui/vue'
-import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
+import { Dialog, DialogPanel } from "@headlessui/vue";
+import { Bars3Icon, XMarkIcon } from "@heroicons/vue/24/outline";
 
 const navigation = [
-  { name: 'Clau', href: '/' },
-  { name: 'Pricing', href: '/pricing' },
-  { name: 'Docs 🔗', href: 'https://docs.clau-dev.com' },
+  { name: "Clau", href: "/" },
+  { name: "Pricing", href: "/pricing" },
+  { name: "Docs 🔗", href: "https://docs.clau-dev.com" },
   // { name: 'Company', href: '#' },
-]
+];
 
-const mobileMenuOpen = ref(false)
+const mobileMenuOpen = ref(false);
 </script>
