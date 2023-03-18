@@ -1,3 +1,3 @@
 <template>
-  <UiImg src="/logo.jpg" alt="CLAU" v-bind="$attrs" />
+  <UiImg src="/logo.jpg" alt="Clau" v-bind="$attrs" />
 </template>
