@@ -9,7 +9,7 @@ export default defineNuxtConfig({
       BASE_SITE: "https://clau-dev.com",
       BASE_API: "https://mlep1rdsr6.execute-api.us-east-1.amazonaws.com",
       BASE_BUCKET: "https://bucket.clau-dev.com",
-      // siteUrl: process.env.NUXT_PUBLIC_BASE_SITE || 'https://clau-dev.com',
+      siteUrl: process.env.NUXT_PUBLIC_BASE_SITE || "https://clau-dev.com",
     },
   },
   srcDir: "src/",
@@ -40,7 +40,8 @@ export default defineNuxtConfig({
     "@nuxtjs/device",
     "@pinia-plugin-persistedstate/nuxt",
     "nuxt-schema-org",
-    "magic-regexp/nuxt"
+    "magic-regexp/nuxt",
+    "nuxt-security",
   ],
 
   tailwindcss: {
