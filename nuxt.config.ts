@@ -55,6 +55,7 @@ export default defineNuxtConfig({
     "@nuxtjs/partytown",
     "@vue-macros/nuxt",
     "nuxt-viewport",
+    "@sidebase/nuxt-pdf",
   ],
 
   tailwindcss: {

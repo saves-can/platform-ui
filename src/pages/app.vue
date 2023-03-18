@@ -1,14 +1,17 @@
 <template>
   <div>
-    <div class="border-2 border-red-500 rounded-lg p-1 my-5">
-      <UiJSON :json="trpcResponse" />
-      <TestPusher />
-      <button @click="trpcResponse.execute">execute</button>
-    </div>
+    <div ref="pdfSection">
+      <div class="border-2 border-red-500 rounded-lg p-1 my-5">
+        <UiJSON :json="trpcResponse" />
+        <TestPusher />
+        <button @click="trpcResponse.execute">execute</button>
+      </div>
 
-    <div class="border-2 border-red-500 rounded-lg p-1 my-5">
-      <TestSwiper />
+      <div class="border-2 border-red-500 rounded-lg p-1 my-5">
+        <TestSwiper />
+      </div>
     </div>
+    <button @click="makePDF">makePDF</button>
   </div>
 </template>
 
@@ -20,6 +23,10 @@ definePageMeta({
 const { $api } = useNuxtApp();
 
 const trpcResponse = await $api.hello.useQuery({ text: "client" });
+const pdfSection = ref(null);
 
-// logger.info({ trpcResponse });
+const makePDF = async () => {
+  console.log({ pdfSection: pdfSection.value });
+  await exportToPDF("my-pdf-file.pdf", pdfSection.value);
+};
 </script>
