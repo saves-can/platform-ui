@@ -8,7 +8,7 @@ export default defineNuxtConfig({
     public: {
       MAGICLINK_KEY: "pk_live_3537E2E4D3D38899",
       BASE_SITE: "https://clau-dev.com",
-      BASE_API: "https://mlep1rdsr6.execute-api.us-east-1.amazonaws.com",
+      BASE_API: "https://ghiho4domb.execute-api.us-east-1.amazonaws.com",
       BASE_BUCKET: "https://bucket.clau-dev.com",
       siteUrl: process.env.NUXT_PUBLIC_BASE_SITE || "https://clau-dev.com",
     },

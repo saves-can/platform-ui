@@ -47,6 +47,9 @@ jobs:
       - name: Preview - Deno 👀
         run: npm run preview:deno & sleep 1 && kill $!
 
+      - name: Remove node_modules directory
+        run: rm -rf node_modules
+
       - name: Zip project files - Deno 📦
         run: zip -r build-${{ github.sha }}-${{ github.run_number }}-deno.zip .
 
@@ -79,6 +82,9 @@ jobs:
 
       - name: Preview - AWS Lambda 👀
         run: npm run preview:aws-lambda & sleep 3 && kill $!
+
+      - name: Remove node_modules directory
+        run: rm -rf node_modules
 
       - name: Zip project files - AWS Lambda 📦
         run: zip -r build-${{ github.sha }}-${{ github.run_number }}-aws-lambda.zip .
