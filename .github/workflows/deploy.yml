@@ -78,5 +78,8 @@ jobs:
       - name: Build - AWS Lambda ⚒️
         run: npm run build:aws-lambda
 
+       - name: Preview - AWS Lambda 👀
+        run: npm run preview:aws-lambda & sleep 3 && kill $!
+
       - name: Deploy - AWS Lambda 🚀
         run: npm run deploy:aws-lambda
