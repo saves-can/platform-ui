@@ -55,7 +55,7 @@ jobs:
         with:
           name: build-${{ github.sha }}-${{ github.run_number }}-deno
           path: build-${{ github.sha }}-${{ github.run_number }}-deno.zip
-          retention-days: 7
+          retention-days: 3
 
   build-aws-lambda:
     runs-on: ubuntu-latest
@@ -88,7 +88,7 @@ jobs:
         with:
           name: build-${{ github.sha }}-${{ github.run_number }}-aws-lambda
           path: build-${{ github.sha }}-${{ github.run_number }}-aws-lambda.zip
-          retention-days: 7
+          retention-days: 3
 
   deploy-ui:
     runs-on: ubuntu-latest
@@ -146,12 +146,6 @@ jobs:
       - name: Install dependencies ⬇️
         run: npm ci
 
-      - name: Install serverless CLI ⬇️
-        run: npm i -g serverless
-
-      - name: Setup AWS keys
-        run: serverless config credentials --provider aws --key ${{ secrets.CLAU_AWS_KEY }} --secret ${{ secrets.CLAU_AWS_SECRET }}
-
       - name: Download Build Artifact - AWS Lambda 📦
         uses: actions/download-artifact@v2
         with:
@@ -159,6 +153,14 @@ jobs:
 
       - name: Unzip Build Artifact - AWS Lambda 📦
         run: unzip build-${{ github.sha }}-${{ github.run_number }}-aws-lambda.zip -d build-aws-lambda
+
+      - name: Install serverless CLI ⬇️
+        working-directory: ./build-aws-lambda
+        run: npm i -g serverless
+
+      - name: Setup AWS keys
+        working-directory: ./build-aws-lambda
+        run: serverless config credentials --provider aws --key ${{ secrets.CLAU_AWS_KEY }} --secret ${{ secrets.CLAU_AWS_SECRET }}
 
       - name: Deploy - AWS Lambda 🚀
         working-directory: ./build-aws-lambda
