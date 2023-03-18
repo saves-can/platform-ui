@@ -113,9 +113,6 @@ jobs:
       - name: Install deployctl ⬇️
         run: deno install -A -r -f https://deno.land/x/deploy/deployctl.ts
 
-      - name: Install dependencies ⬇️
-        run: npm ci
-
       - name: Download Build Artifact - Deno 📦
         uses: actions/download-artifact@v2
         with:
@@ -143,9 +140,6 @@ jobs:
       - name: Add npm credentials 🔒
         run: echo "//npm.pkg.github.com/:_authToken=$NODE_AUTH_TOKEN" > ~/.npmrc
 
-      - name: Install dependencies ⬇️
-        run: npm ci
-
       - name: Download Build Artifact - AWS Lambda 📦
         uses: actions/download-artifact@v2
         with:
@@ -164,4 +158,4 @@ jobs:
 
       - name: Deploy - AWS Lambda 🚀
         working-directory: ./build-aws-lambda
-        run: npm run deploy:aws-lambda
+        run: serverless deploy --force
