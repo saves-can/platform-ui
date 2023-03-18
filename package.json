@@ -14,8 +14,10 @@
   },
   "devDependencies": {
     "@nuxt/image-edge": "^1.0.0-27968280.9739e4d",
+    "@nuxtjs/device": "^3.1.0",
     "@nuxtjs/i18n": "npm:@nuxtjs/i18n-edge",
     "@nuxtjs/tailwindcss": "^6.4.1",
+    "@pinia-plugin-persistedstate/nuxt": "^1.1.1",
     "@vueuse/core": "^9.13.0",
     "@vueuse/nuxt": "^9.13.0",
     "nuxt": "^3.2.3",

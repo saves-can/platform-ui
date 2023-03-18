@@ -36,6 +36,8 @@ export default defineNuxtConfig({
     "nuxt-headlessui",
     "@nuxtjs/i18n",
     "@nuxt/image-edge",
+    '@nuxtjs/device',
+    '@pinia-plugin-persistedstate/nuxt',
   ],
 
   tailwindcss: {
