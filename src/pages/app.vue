@@ -17,13 +17,9 @@
 
 <script setup>
 definePageMeta({
+  title: "App",
   layout: "app",
 });
-
-useServerSeoMeta({
-  title: 'Clau App',
-  ogTitle: 'Clau App',
-})
 
 const { $api } = useNuxtApp();
 

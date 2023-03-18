@@ -421,6 +421,7 @@ import {
   ComboboxOptions,
   ComboboxOption,
 } from "@headlessui/vue";
+
 const navigation = [
   { name: "Dashboard", href: "#", icon: HomeIcon, current: true },
   { name: "Team", href: "#", icon: UsersIcon, current: false },
@@ -468,4 +469,11 @@ const filteredProjects = computed(() =>
 function onSelect(item) {
   window.location = item.url;
 }
+
+const route = useRoute();
+
+useServerSeoMeta({
+  title: `Clau ${route.meta.title}`,
+  ogTitle: `Clau ${route.meta.title}`,
+});
 </script>

@@ -8,11 +8,7 @@
 
 <script setup>
 definePageMeta({
+  title: "Pricing",
   layout: "home",
-});
-
-useServerSeoMeta({
-  title: "Clau Pricing",
-  ogTitle: "Clau Pricing",
 });
 </script>
