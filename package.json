@@ -26,7 +26,8 @@
     "nuxt-headlessui": "^1.1.1",
     "nuxt-icon": "^0.3.2",
     "nuxt-schema-org": "^2.1.2",
-    "nuxt-security": "^0.12.0"
+    "nuxt-security": "^0.12.0",
+    "nuxt-viewport": "^2.0.3"
   },
   "dependencies": {
     "@headlessui/vue": "^1.7.11",

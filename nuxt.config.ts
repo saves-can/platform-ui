@@ -54,6 +54,7 @@ export default defineNuxtConfig({
     "nuxt-typed-router",
     "@nuxtjs/partytown",
     "@vue-macros/nuxt",
+    "nuxt-viewport",
   ],
 
   tailwindcss: {
