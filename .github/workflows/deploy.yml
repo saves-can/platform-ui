@@ -25,17 +25,17 @@ jobs:
   deploy-deno:
     runs-on: ubuntu-latest
     name: Deploy UI to Deno Deploy
-    
+
     steps:
       - name: Checkout code 📁
         uses: actions/checkout@v3
-      
+
       - name: Add npm credentials 🔒
         run: echo "//npm.pkg.github.com/:_authToken=$NODE_AUTH_TOKEN" > ~/.npmrc
-    
+
       - name: Install Deno ⬇️
         uses: denoland/setup-deno@v1
-        with: 
+        with:
           deno-version: v1.x
 
       - name: Install dependencies ⬇️
@@ -46,10 +46,10 @@ jobs:
 
       - name: Build - Deno ⚒️
         run: npm run build:deno
-      
+
       - name: Preview - Deno 👀
         run: npm run preview:deno & sleep 1 && kill $!
-      
+
       - name: Deploy - Deno 🚀
         run: npm run deploy:deno
 
@@ -58,11 +58,11 @@ jobs:
     name: Deploy API to AWS Lambda
     needs: deploy-deno
     if: ${{ needs.deploy-deno.result == 'success' }}
-    
+
     steps:
       - name: Checkout code 📁
         uses: actions/checkout@v3
-      
+
       - name: Add npm credentials 🔒
         run: echo "//npm.pkg.github.com/:_authToken=$NODE_AUTH_TOKEN" > ~/.npmrc
 
@@ -77,6 +77,6 @@ jobs:
 
       - name: Build - AWS Lambda ⚒️
         run: npm run build:aws-lambda
-      
+
       - name: Deploy - AWS Lambda 🚀
         run: npm run deploy:aws-lambda

@@ -4,6 +4,7 @@ import es from "./src/translations/en.json";
 
 export default defineNuxtConfig({
   runtimeConfig: {
+    MAGICLINK_KEY: "sk_live_8657089BC5A86709",
     public: {
       MAGICLINK_KEY: "pk_live_3537E2E4D3D38899",
       BASE_SITE: "https://clau-dev.com",

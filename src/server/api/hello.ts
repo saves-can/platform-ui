@@ -1,6 +1,6 @@
 export default defineEventHandler((event) => {
     return {
-      message: 'Hello from nuxt api'
+      message: 'Hello from API'
     }
   })
   

@@ -3,14 +3,15 @@
   "scripts": {
     "dev": "nuxi dev",
     "build:deno": "NITRO_PRESET=deno nuxi build",
-    "build:aws-lambda": "NITRO_PRESET=aws-lambda nuxi build",
     "preview:deno": "cd .output/ && deno run -A server/index.ts",
     "deploy:deno": "cd .output/ && deployctl deploy --project='clau-platform' --prod server/index.ts && cd ..",
-    "deploy:aws-lambda": "sls deploy --force",
     "build:preview:deno": "npm run build:deno && npm run preview:deno",
     "build:deploy:deno": "npm run build:deno && npm run deploy:deno",
-    "build:deploy:aws-lambda": "npm run build:aws-lambda && npm run deploy:aws-lambda",
-    "build:deploy": "npm run build:deploy:aws-lambda && npm run build:deploy:deno"
+    "build:aws-lambda": "NITRO_PRESET=aws-lambda nuxi build",
+    "preview:aws-lambda": "sls offline start",
+    "deploy:aws-lambda": "sls deploy --force",
+    "build:preview:aws-lambda": "npm run build:aws-lambda && npm run preview:aws-lambda",
+    "build:deploy:aws-lambda": "npm run build:aws-lambda && npm run deploy:aws-lambda"
   },
   "devDependencies": {
     "@nuxt/image-edge": "^1.0.0-27968280.9739e4d",
@@ -28,7 +29,8 @@
     "nuxt-icon": "^0.3.2",
     "nuxt-schema-org": "^2.1.2",
     "nuxt-security": "^0.12.0",
-    "nuxt-viewport": "^2.0.3"
+    "nuxt-viewport": "^2.0.3",
+    "serverless-offline": "^12.0.4"
   },
   "dependencies": {
     "@headlessui/vue": "^1.7.11",

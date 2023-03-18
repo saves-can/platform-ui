@@ -2,7 +2,7 @@ service: clau-platform
 
 provider:
   name: aws
-  stage: stage
+  stage: prod
   runtime: nodejs18.x
 
 package:
@@ -10,9 +10,12 @@ package:
     - "!**"
     - ".output/**"
     - ".env"
-    
+
 functions:
   api:
     handler: .output/server/index.handler
     events:
       - httpApi: "*"
+
+plugins:
+  - serverless-offline
