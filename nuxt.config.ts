@@ -53,6 +53,7 @@ export default defineNuxtConfig({
     "nuxt-swiper",
     "nuxt-typed-router",
     "@nuxtjs/partytown",
+    "@vue-macros/nuxt",
   ],
 
   tailwindcss: {
@@ -74,6 +75,4 @@ export default defineNuxtConfig({
   // image: {
   //   domains: ["bucket.clau-dev.com"],
   // },
-
-  schemaOrg: {},
 });
