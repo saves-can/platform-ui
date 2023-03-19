@@ -75,7 +75,7 @@
         <div v-show="isLoggedIn">
           <UiJSON
             class="mx-auto"
-            :json="{ isLoggedIn, user, useSMS, oAuthResult }"
+            :json="{ isLoggedIn, user, useSMS, oAuthResult, apiAuthResult }"
           />
 
           <a
@@ -113,6 +113,7 @@ const login = async () => {
 const {
   emailInput: email,
   phoneInput: phone,
+  apiAuthResult,
   isLoggedIn,
   user,
   oAuthResult,
