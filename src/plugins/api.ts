@@ -1,8 +1,8 @@
 import { createTRPCNuxtClient, httpLink } from "trpc-nuxt/client";
-import type { AppRouter } from "~/server/api/trpc/[trpc]";
+import type { AppRouter } from "~/server/trpc/routers";
 
 export default defineNuxtPlugin(() => {
-  const {  BASE_API } = useRuntimeConfig().public;
+  const { BASE_API } = useRuntimeConfig().public;
 
   const api = createTRPCNuxtClient<AppRouter>({
     links: [

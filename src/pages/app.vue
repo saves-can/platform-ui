@@ -10,7 +10,14 @@
       <div class="border-2 border-red-500 rounded-lg p-1 my-5">
         <TestSwiper />
       </div>
+
+      <div class="border-2 border-red-500 rounded-lg p-1 my-5">
+        DB
+        <UiJSON :json="dbResponse" />
+        <button @click="dbResponse.execute">execute DB</button>
+      </div>
     </div>
+    
     <button @click="makePDF">makePDF</button>
   </div>
 </template>
@@ -23,7 +30,10 @@ definePageMeta({
 
 const { $api } = useNuxtApp();
 
-const trpcResponse = await $api.hello.useQuery({ text: "client" });
+const trpcResponse = await $api.pusher.useQuery({ text: "client" });
+
+const dbResponse = await $api.db.useQuery()
+
 const pdfSection = ref(null);
 
 const makePDF = async () => {

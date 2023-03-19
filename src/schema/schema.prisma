@@ -1,0 +1,21 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/prisma-client"
+}
+
+datasource db {
+  provider  = "mongodb"
+  url       = env("NUXT_CLAU_PLATFORM_PROXY_DB")
+  directUrl = env("NUXT_CLAU_PLATFORM_DB")
+}
+
+model users {
+  id    String  @id @default(auto()) @map("_id") @db.ObjectId
+  uuid  String  @unique @default(uuid())
+  phone String? @unique
+  email String? @unique
+  name  String?
+}

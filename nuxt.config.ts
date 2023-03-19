@@ -4,6 +4,8 @@ import es from "./src/translations/en.json";
 
 export default defineNuxtConfig({
   runtimeConfig: {
+    CLAU_PLATFORM_PROXY_DB: "prisma://aws-us-east-1.prisma-data.com/?api_key=mY4engKpoOtH3QVxb9NWeTZ_NWpEeoT6CcLwsDAtpsefXTby_mpAjYXQj1qLL0yF",
+    CLAU_PLATFORM_DB: "mongodb+srv://clau-platform:clau-platform@clau-platform.rfhsr.mongodb.net/clau-platform?retryWrites=true&w=majority",
     MAGICLINK_KEY: "sk_live_8657089BC5A86709",
     public: {
       MAGICLINK_KEY: "pk_live_3537E2E4D3D38899",
