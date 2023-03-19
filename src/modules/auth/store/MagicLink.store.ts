@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import { Magic } from "magic-sdk";
 import { OAuthExtension, OAuthProvider } from "@magic-ext/oauth";
+import { $api } from "../../api/composable/Api.composable";
 
 export const useStoreMagicLink = defineStore(
   "MagicLink",
@@ -11,7 +12,7 @@ export const useStoreMagicLink = defineStore(
       extensions: [new OAuthExtension()],
     });
 
-    logger.info({ m, MAGICLINK_KEY });
+    logger.debug({ m, MAGICLINK_KEY });
 
     const error: any = ref(null);
     const user: any = ref(null);
@@ -23,7 +24,7 @@ export const useStoreMagicLink = defineStore(
     const oAuthResult: any = ref(null);
 
     async function refreshUser() {
-      logger.info("refreshUser");
+      logger.debug("refreshUser");
       try {
         isLoggedIn.value = await m.user.isLoggedIn();
         user.value = await m.user.getMetadata();
@@ -118,7 +119,7 @@ export const useStoreMagicLink = defineStore(
 
     async function setup() {
       isLoading.value = true;
-      logger.info("setup");
+      logger.debug("setup");
       m.preload().then(() => logger.info("Magic <iframe> loaded"));
 
       await Promise.all([refreshUser(), getOAuthResult()]);
@@ -132,6 +133,28 @@ export const useStoreMagicLink = defineStore(
 
       if (user.value?.email) {
         emailInput.value = user.value.email;
+      }
+    });
+
+    watch(isLoggedIn, async () => {
+      if (isLoggedIn.value) {
+        logger.debug("Is logged in");
+        let dataToSend = {
+          email: user.value.email,
+          phone: user.value.phoneNumber,
+        };
+
+        if (oAuthResult.value) {
+          dataToSend.email = oAuthResult.value.magic?.userMetadata?.email;
+        }
+
+        logger.debug("data to send", {
+          dataToSend,
+        });
+
+        const response = await $api("/auth/create", { method: 'POST', body: dataToSend });
+
+        logger.info({ response });
       }
     });
 

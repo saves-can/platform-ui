@@ -51,7 +51,7 @@ let client = ref(null);
 let channel = ref(null);
 let messages = ref([]);
 
-const { data, execute } = await useAPI("/pusher");
+const { data, execute } = await useApi("/pusher");
 
 PusherJS.logToConsole = false;
 
