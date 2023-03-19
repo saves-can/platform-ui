@@ -24,7 +24,7 @@ env:
 jobs:
   build-deploy-deno:
     runs-on: ubuntu-latest
-    name: Build UI for Deno Deploy
+    name: Deploy UI on Deno Deploy
 
     steps:
       - name: Checkout code 📁
@@ -55,7 +55,7 @@ jobs:
 
   build-deploy-aws-lambda:
     runs-on: ubuntu-latest
-    name: Build API for AWS Lambda
+    name: Deploy API on AWS Lambda
 
     steps:
       - name: Checkout code 📁

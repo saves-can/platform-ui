@@ -1,7 +1,6 @@
 import { z } from "zod";
 import { publicProcedure, router } from "../trpc";
-import { PrismaClient } from "~/schema/generated/prisma-client/edge";
-
+import { PrismaClient } from '@prisma/client'
 import axios from "axios";
 
 export const dbRouter = router({
@@ -28,6 +27,7 @@ export const dbRouter = router({
           db: { url: CLAU_PLATFORM_PROXY_DB },
         },
       });
+
       const fakeName: string = new Date().toISOString()
       const prismaResponse = await prisma.users.create({
         data: { name: input?.name || fakeName },
