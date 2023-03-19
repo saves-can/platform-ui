@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { publicProcedure, router } from "../trpc";
-import { PrismaClient } from "~/schema/generated/prisma-client-ts/edge";
+import { PrismaClient } from "~/schema/generated/prisma-client/edge";
 
 import axios from "axios";
 
