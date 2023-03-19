@@ -31,8 +31,6 @@ let client = new PusherJS("8efe3b5d-d99f-4e67-b1e9-39c8e3c49774", {
 
 let messages = ref([]);
 
-const { BASE_API } = useRuntimeConfig().public;
-
 client.value = new PusherJS("8efe3b5d-d99f-4e67-b1e9-39c8e3c49774", {
   wsHost:
     "clau-platform-6a998e8f-4990-48ac-9304-5c5b98f6d694.fro-dev-clau.workers.dev",
@@ -45,9 +43,7 @@ client.value = new PusherJS("8efe3b5d-d99f-4e67-b1e9-39c8e3c49774", {
   cluster: "",
 });
 
-const url = `${BASE_API}/pusher`;
-
-const { data, execute } = await useFetch(url);
+const { data, execute } = await useAPI("/pusher");
 
 PusherJS.logToConsole = false;
 

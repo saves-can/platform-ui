@@ -14,7 +14,10 @@ export default defineNuxtConfig({
   },
   srcDir: "src/",
   imports: {
-    dirs: ["modules/**/*.store.ts"],
+    dirs: [
+      "modules/**/*.store.ts",
+      "modules/**/*.composable.ts"
+    ],
   },
   components: {
     dirs: [
