@@ -14,7 +14,7 @@ on:
         options:
           - prod
 
-run-name: "Deploy to stage: '${{ github.ref == 'refs/heads/main' && inputs.stage || 'prod' }}' - '${{ github.event.head_commit.message }}'"
+run-name: "Deploy to '${{ github.ref == 'refs/heads/main' && inputs.stage || 'prod' }}' with message '${{ github.event.head_commit.message }}'"
 
 env:
   NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -22,9 +22,9 @@ env:
   DENO_DEPLOY_TOKEN: ${{ secrets.DENO_DEPLOY_TOKEN }}
 
 jobs:
-  build-deploy-deno:
+  build-deploy:
     runs-on: ubuntu-latest
-    name: Deploy UI on Deno Deploy
+    name: Deploy UI
 
     steps:
       - name: Checkout code 📁
@@ -44,11 +44,11 @@ jobs:
       - name: Install dependencies ⬇️
         run: npm ci
 
-      - name: Build - Deno ⚒️
+      - name: Build ⚒️
         run: npm run build
 
-      - name: Preview - Deno 👀
+      - name: Preview 👀
         run: npm run preview & sleep 1 && kill $!
 
-      - name: Deploy - Deno 🚀
+      - name: Deploy 🚀
         run: npm run deploy
