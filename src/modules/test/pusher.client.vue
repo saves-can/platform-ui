@@ -2,6 +2,17 @@
   <div>
     PUSHER!
 
+    <UiJSON
+      class="mx-auto"
+      :json="{
+        vibrationIsSupported: isSupported,
+        isOnline,
+        offlineAt,
+      }"
+    />
+
+    <div v-if="!isOnline">YOU ARE NOT CONNECTED CHECK YUR NETWORK</div>
+
     <button
       class="block m-3 bg-red-500 rounded-lg p-3 text-white"
       @click="clearMessages"
@@ -31,6 +42,10 @@
 
 <script setup>
 import PusherJS from "pusher-js";
+
+const { vibrate, isSupported } = useVibrate({ pattern: [300, 100, 300] });
+
+const { isOnline, offlineAt } = useNetwork();
 
 let client = ref(null);
 let channel = ref(null);
@@ -72,6 +87,7 @@ function setPusher() {
 }
 
 async function sendMessage() {
+  vibrate();
   await execute();
   setPusher();
 }
