@@ -22,7 +22,7 @@ env:
   DENO_DEPLOY_TOKEN: ${{ secrets.DENO_DEPLOY_TOKEN }}
 
 jobs:
-  build-deno:
+  build-deploy-deno:
     runs-on: ubuntu-latest
     name: Build UI for Deno Deploy
 
@@ -38,6 +38,9 @@ jobs:
         with:
           deno-version: v1.x
 
+      - name: Install deployctl ⬇️
+        run: deno install -A -r -f https://deno.land/x/deploy/deployctl.ts
+
       - name: Install dependencies ⬇️
         run: npm ci
 
@@ -47,20 +50,10 @@ jobs:
       - name: Preview - Deno 👀
         run: npm run preview:deno & sleep 1 && kill $!
 
-      - name: Remove node_modules directory
-        run: rm -rf node_modules
+      - name: Deploy - Deno 🚀
+        run: npm run deploy:deno
 
-      - name: Zip project files - Deno 📦
-        run: zip -r build-${{ github.sha }}-${{ github.run_number }}-deno.zip .
-
-      - name: Upload build artifact - Deno 📦
-        uses: actions/upload-artifact@v2
-        with:
-          name: build-${{ github.sha }}-${{ github.run_number }}-deno
-          path: build-${{ github.sha }}-${{ github.run_number }}-deno.zip
-          retention-days: 3
-
-  build-aws-lambda:
+  build-deploy-aws-lambda:
     runs-on: ubuntu-latest
     name: Build API for AWS Lambda
 
@@ -77,79 +70,14 @@ jobs:
       - name: Install serverless CLI ⬇️
         run: npm i -g serverless
 
+      - name: Setup AWS keys
+        run: serverless config credentials --provider aws --key ${{ secrets.CLAU_AWS_KEY }} --secret ${{ secrets.CLAU_AWS_SECRET }}
+
       - name: Build - AWS Lambda ⚒️
         run: npm run build:aws-lambda
 
       - name: Preview - AWS Lambda 👀
         run: npm run preview:aws-lambda & sleep 3 && kill $!
 
-      - name: Remove node_modules directory
-        run: rm -rf node_modules
-
-      - name: Zip project files - AWS Lambda 📦
-        run: zip -r build-${{ github.sha }}-${{ github.run_number }}-aws-lambda.zip .
-
-      - name: Upload build artifact - AWS Lambda 📦
-        uses: actions/upload-artifact@v2
-        with:
-          name: build-${{ github.sha }}-${{ github.run_number }}-aws-lambda
-          path: build-${{ github.sha }}-${{ github.run_number }}-aws-lambda.zip
-          retention-days: 3
-
-  deploy-ui:
-    runs-on: ubuntu-latest
-    name: Deploy UI to Deno Deploy
-    needs:
-      - build-deno
-      - build-aws-lambda
-    if: ${{ needs.build-deno.result == 'success' && needs.build-aws-lambda.result == 'success' }}
-
-    steps:
-      - name: Install Deno ⬇️
-        uses: denoland/setup-deno@v1
-        with:
-          deno-version: v1.x
-
-      - name: Install deployctl ⬇️
-        run: deno install -A -r -f https://deno.land/x/deploy/deployctl.ts
-
-      - name: Download Build Artifact - Deno 📦
-        uses: actions/download-artifact@v2
-        with:
-          name: build-${{ github.sha }}-${{ github.run_number }}-deno
-
-      - name: Unzip Build Artifact - Deno 📦
-        run: unzip build-${{ github.sha }}-${{ github.run_number }}-deno.zip -d build-deno
-
-      - name: Deploy - Deno 🚀
-        working-directory: ./build-deno
-        run: npm run deploy:deno
-
-  deploy-api:
-    runs-on: ubuntu-latest
-    name: Deploy API to AWS Lambda
-    needs:
-      - build-deno
-      - build-aws-lambda
-    if: ${{ needs.build-deno.result == 'success' && needs.build-aws-lambda.result == 'success' }}
-
-    steps:
-      - name: Download Build Artifact - AWS Lambda 📦
-        uses: actions/download-artifact@v2
-        with:
-          name: build-${{ github.sha }}-${{ github.run_number }}-aws-lambda
-
-      - name: Unzip Build Artifact - AWS Lambda 📦
-        run: unzip build-${{ github.sha }}-${{ github.run_number }}-aws-lambda.zip -d build-aws-lambda
-
-      - name: Install serverless CLI ⬇️
-        working-directory: ./build-aws-lambda
-        run: npm i -g serverless
-
-      - name: Setup AWS keys
-        working-directory: ./build-aws-lambda
-        run: serverless config credentials --provider aws --key ${{ secrets.CLAU_AWS_KEY }} --secret ${{ secrets.CLAU_AWS_SECRET }}
-
       - name: Deploy - AWS Lambda 🚀
-        working-directory: ./build-aws-lambda
         run: serverless deploy --force --config serverless.prod.yml
