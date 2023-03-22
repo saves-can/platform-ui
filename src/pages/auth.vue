@@ -1,13 +1,3 @@
 <template>
-  <div>
-    <AuthSectionForm />
-  </div>
+  <PagesAuth />
 </template>
-
-<script setup>
-definePageMeta({
-  title: "Auth",
-  layout: "home",
-});
-
-</script>

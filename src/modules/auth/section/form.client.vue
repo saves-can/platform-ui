@@ -49,7 +49,7 @@
           <UiDivider text="Or" />
 
           <div class="grid grid-cols-2 gap-3">
-            <a
+            <NuxtLink
               @click="toggleSMS()"
               class="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
             >
@@ -60,15 +60,15 @@
                 :name="`fa6-solid:${useSMS ? 'envelope' : 'comment-sms'}`"
                 class="mx-1 text-3xl"
               />
-            </a>
+            </NuxtLink>
 
-            <a
+            <NuxtLink
               @click="MagicLink.loginOAuth"
               class="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
             >
               <span class="my-auto">Github</span>
               <Icon name="grommet-icons:github" class="mx-1 text-3xl" />
-            </a>
+            </NuxtLink>
           </div>
         </div>
 
@@ -78,12 +78,12 @@
             :json="{ isLoggedIn, user, useSMS, oAuthResult, apiAuthResult }"
           />
 
-          <a
+          <NuxtLink
             href="/app"
             class="flex w-full my-3 justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
           >
             Go to App <Icon name="mdi:login-variant" class="text-xl mx-1" />
-          </a>
+          </NuxtLink>
 
           <button
             :disabled="isLoading"
