@@ -31,6 +31,7 @@ export default defineNuxtConfig({
     ],
   },
   modules: [
+    "@nuxt/devtools",
     "@nuxtjs/tailwindcss",
     "@pinia/nuxt",
     "@vueuse/nuxt",

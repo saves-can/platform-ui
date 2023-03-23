@@ -4,11 +4,14 @@
     "dev": "nuxi dev",
     "build": "NITRO_PRESET=deno nuxi build",
     "preview": "cd .output/ && deno run -A server/index.ts",
-    "deploy": "cd .output/ && deployctl deploy --project='clau-platform-ui' --prod server/index.ts && cd ..",
+    "deploy": "cd .output/ && deployctl deploy --project='clau-platform-ui server/index.ts && cd ..",
+    "deploy:prod": "cd .output/ && deployctl deploy --project='clau-platform-ui' --prod server/index.ts && cd ..",
     "build:preview": "npm run build && npm run preview",
-    "build:deploy": "npm run build && npm run deploy"
+    "build:deploy": "npm run build && npm run deploy",
+    "build:deploy:prod": "npm run build && npm run deploy:prod"
   },
   "devDependencies": {
+    "@nuxt/devtools": "^0.2.5",
     "@nuxt/image-edge": "^1.0.0-27968280.9739e4d",
     "@nuxtjs/device": "^3.1.0",
     "@nuxtjs/i18n": "npm:@nuxtjs/i18n-edge",
@@ -19,7 +22,7 @@
     "@vue-macros/nuxt": "^1.2.3",
     "@vueuse/core": "^9.13.0",
     "@vueuse/nuxt": "^9.13.0",
-    "nuxt": "^3.2.3",
+    "nuxt": "npm:nuxt3@latest",
     "nuxt-headlessui": "^1.1.1",
     "nuxt-icon": "^0.3.2",
     "nuxt-schema-org": "^2.1.2",
