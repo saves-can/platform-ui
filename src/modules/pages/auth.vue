@@ -7,14 +7,11 @@
   <script setup>
 
 
-  const title = ref("Auth");
-
-useSeoMeta({
-  title,
-  description: () => `description: ${title.value}`,
+definePage({
+  title: "Auth",
+  description: "Auth description",
+  layout: "home",
 });
-
-setPageLayout("home");
   
   </script>
   

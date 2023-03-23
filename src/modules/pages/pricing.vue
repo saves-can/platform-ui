@@ -7,12 +7,9 @@
 </template>
 
 <script setup>
-const title = ref("Pricing");
-
-useSeoMeta({
-  title,
-  description: () => `description: ${title.value}`,
+definePage({
+  title: "Pricing",
+  description: "Pricing description",
+  layout: "home",
 });
-
-setPageLayout("home");
 </script>
