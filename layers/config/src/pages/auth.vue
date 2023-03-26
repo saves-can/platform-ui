@@ -1,0 +1,3 @@
+<template>
+  <PagesAuth />
+</template>
