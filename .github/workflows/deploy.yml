@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'home/**'
   workflow_dispatch:
     inputs:
       stage:
@@ -29,6 +31,12 @@ jobs:
     steps:
       - name: Checkout code 📁
         uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
+          fetch-depth: 0
+
+      - name: Change to corresponding directory
+        run: cd ${GITHUB_WORKSPACE}/${GITHUB_EVENT_PATH}
 
       - name: Add npm credentials 🔒
         run: echo "//npm.pkg.github.com/:_authToken=$NODE_AUTH_TOKEN" > ~/.npmrc
@@ -51,4 +59,4 @@ jobs:
         run: npm run preview & sleep 1 && kill $!
 
       - name: Deploy 🚀
-        run: npm run deploy
+        run: cd .output/ && deployctl deploy --project='clau-platform-ui' server/index.ts && cd ..

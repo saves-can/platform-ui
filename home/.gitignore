@@ -1,0 +1,13 @@
+/node_modules
+*.iml
+.idea
+*.log*
+/.nuxt
+.DS_Store
+coverage
+/dist
+sw.*
+.env
+/.output
+/.serverless
+/src/schema/generated
