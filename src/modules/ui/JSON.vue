@@ -1,5 +1,11 @@
 <template>
-  <JsonViewer :value="json" copyable sort theme="jv-dark"  class="text-white bg-black rounded-lg p-1 overflow-auto"/>
+  <JsonViewer
+    :value="json"
+    copyable
+    sort
+    theme="jv-dark"
+    class="text-white bg-black rounded-lg p-1 overflow-auto"
+  />
 </template>
 
 <script setup>

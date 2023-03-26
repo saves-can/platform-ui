@@ -6,9 +6,9 @@
           class="relative rounded-full py-1 px-3 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20"
         >
           Announcing our next round of funding.
-          <a href="#" class="font-semibold text-indigo-600"
+          <NuxtLink href="#" class="font-semibold text-indigo-600"
             ><span class="absolute inset-0" aria-hidden="true" />Read more
-            <span aria-hidden="true">&rarr;</span></a
+            <span aria-hidden="true">&rarr;</span></NuxtLink
           >
         </div>
       </div>

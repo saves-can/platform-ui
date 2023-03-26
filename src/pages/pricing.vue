@@ -1,14 +1,3 @@
 <template>
-  <div>
-    <PricingSectionPrices />
-    <PricingSectionTestimonials />
-    <CommonSectionContact />
-  </div>
+  <PagesPricing />
 </template>
-
-<script setup>
-definePageMeta({
-  title: "Pricing",
-  layout: "home",
-});
-</script>

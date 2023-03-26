@@ -1,16 +1,3 @@
 <template>
-  <div>
-    <HomeSectionHero />
-    <HomeSectionFeatures />
-    <HomeSectionCta />
-    <CommonSectionContact />
-  </div>
+  <PagesHome />
 </template>
-
-<script setup>
-definePageMeta({
-  title: "Home",
-  layout: "home",
-});
-
-</script>

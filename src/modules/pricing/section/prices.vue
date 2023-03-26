@@ -82,7 +82,7 @@
                 frequency.priceSuffix
               }}</span>
             </p>
-            <a
+            <NuxtLink
               :href="tier.href"
               :aria-describedby="tier.id"
               :class="[
@@ -91,7 +91,7 @@
                   : 'text-indigo-600 ring-1 ring-inset ring-indigo-200 hover:ring-indigo-300',
                 'mt-6 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600',
               ]"
-              >Buy plan</a
+              >Buy plan</NuxtLink
             >
             <ul
               role="list"
