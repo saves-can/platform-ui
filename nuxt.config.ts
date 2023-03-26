@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import en from "./src/translations/en.json";
-import es from "./src/translations/en.json";
+import es from "./src/translations/es.json";
 
 export default defineNuxtConfig({
   runtimeConfig: {
@@ -45,6 +45,7 @@ export default defineNuxtConfig({
     "@pinia-plugin-persistedstate/nuxt",
     "nuxt-schema-org",
     "magic-regexp/nuxt",
+
     /**
      * TODO: Customize to:
      * - log in console
@@ -70,7 +71,7 @@ export default defineNuxtConfig({
     defaultLocale: "en", // default locale of your project for Nuxt pages and routings
     vueI18n: {
       legacy: false,
-      locale: "en",
+      locale: 'en',
       messages: { en, es },
     },
   },
